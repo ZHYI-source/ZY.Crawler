@@ -42,27 +42,28 @@ class Crawler {
     }
 }
 
-
-const crawler = new Crawler({
-    headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
-    },
-    timeout: 5000,
-    proxy: '',
-});
-
-(async () => {
-    try {
-        const result = await crawler.fetch('https://www.baidu.com', ($, response) => {
-            const title = $('title').text();
-            const statusCode = response.statusCode;
-            return { title, statusCode };
-        });
-        console.log(result);
-    } catch (err) {
-        console.error(err);
-    }
-})();
+// Demo
+//
+// const crawler = new Crawler({
+//     headers: {
+//         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+//     },
+//     timeout: 5000,
+//     proxy: '',
+// });
+//
+// (async () => {
+//     try {
+//         const result = await crawler.fetch('https://www.baidu.com', ($, response) => {
+//             const title = $('title').text();
+//             const statusCode = response.statusCode;
+//             return { title, statusCode };
+//         });
+//         console.log(result);
+//     } catch (err) {
+//         console.error(err);
+//     }
+// })();
 
 
 module.exports = Crawler;

@@ -1,6 +1,6 @@
 {
   "name": "zy-crawler",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "zy-crawler是一个基于Node.js的简单易用的爬虫工具",
   "main": "index.js",
   "scripts": {
