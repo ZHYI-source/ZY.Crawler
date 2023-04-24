@@ -83,11 +83,6 @@ const crawler = new Crawler({
     }
   ]
 }
-
-
-
-
-
 ```
 
 `crawler.fetchAll(urls)`
@@ -163,8 +158,7 @@ const crawler = new Crawler({
 
 ### 完整示例
 
-```
-
+```js
 const Crawler = require('zy-crawler');
 
 // 创建爬虫实例
