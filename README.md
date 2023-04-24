@@ -82,7 +82,7 @@ const crawler = new Crawler({
 
 欢迎对zy-crawler进行贡献！如果你发现了任何问题或者有任何想法或建议，请通过以下方式联系我：
 
-- 在GitHub上提出问题或请求。
+- 在Gitee 或者 GitHub上提出问题或请求。
 - 提交一个Pull Request来改进代码。
 - 通过电子邮件（[1840354092@qq.com](1840354092@qq.com)）与我们联系。
 

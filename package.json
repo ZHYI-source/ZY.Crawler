@@ -1,7 +1,7 @@
 {
   "name": "zy-crawler",
-  "version": "1.0.1",
-  "description": "zy-crawler是一个基于Node.js的简单易用的爬虫工具，它可以用来获取网页中的数据并将其保存到本地或者数据库中",
+  "version": "1.0.2",
+  "description": "zy-crawler是一个基于Node.js的简单易用的爬虫工具",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
