@@ -1,0 +1,25 @@
+{
+  "name": "zy-crawler",
+  "version": "1.0.1",
+  "description": "zy-crawler是一个基于Node.js的简单易用的爬虫工具，它可以用来获取网页中的数据并将其保存到本地或者数据库中",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/Z568_568/ZY.Crawler.git"
+  },
+  "keywords": [
+    "node爬虫",
+    "crawler",
+    "网页信息"
+  ],
+  "author": "ZHOUYI",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  }
+}
