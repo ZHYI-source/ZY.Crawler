@@ -1,6 +1,6 @@
 # zy-crawler
 
-zy-crawler是一个基于Node.js的简单易用的爬虫工具，它可以用来获取网页中的数据并将其保存到本地或者数据库中。
+zy-crawler是一个基于Node.js的简单易用的爬虫工具，它可以用来获取网页中的数据。
 
 ## 安装
 
@@ -17,9 +17,9 @@ npm install zy-crawler -s
 - `url`：要爬取的网址
 
 - `options`：一个可选的配置对象，包括以下属性：
-    - `headers `：{}
+    - `headers `：{} 目标网页的请求头
     - `timeout `：超时时间
-    - `proxy `：代理
+    - `proxy `：代理地址
 
 返回一个Promise，当爬取完成后，会将获取到的数据作为参数传递给`then`方法，并且返回一个对象，其中包含以下属性：
 
@@ -28,7 +28,7 @@ npm install zy-crawler -s
 
 如果发生错误，则会将错误作为参数传递给`catch`方法。
 
-## 示例
+## Node中使用示例
 
 ### 获取指定元素的内容
 
@@ -45,19 +45,24 @@ const crawler = new Crawler({
 });
 
 // 爬取单个网页
-(async () => {
+(async (req, res) => {
     try {
-        const $ = await crawler.fetch('https://www.51yuansu.com/search/yanwu.html');
+        const {url,data} = await crawler.fetch('https://www.58pic.com/c/25964047');
         const imgList = [];
+        const $ = data
         $('img').each((index, element) => {
-            // console.log($(element))
-            const link = $(element).attr('data-src');
-            const alt = $(element).attr('alt');
-            link && imgList.push({alt, link});
+            // 对数据进行格式化 组建出符合自己要求的数据格式
+            if (data(element).attr('class') === 'lazy') {
+                const link = data(element).attr('data-original') && 'https:' + data(element).attr('data-original');
+                const alt = data(element).attr('alt');
+                const style = data(element).attr('sizes');
+                link && imgList.push({alt, link, style});
+            }
         });
-        console.log(imgList);
+        res.json({url,imgList})
     } catch (err) {
         console.error(err.message);
+        res.status(500).send(err)
     }
 })();
 
@@ -65,16 +70,17 @@ const crawler = new Crawler({
 // 爬取多个网页
 (async () => {
   const urls = ['https://www.example.com', 'https://www.example.net'];
-  const results = await crawler.fetchAll(urls);
-  for (let result of results) {
+  const {urls,data} = await crawler.fetchAll(urls);
+  for (let result of data) {
     console.log(result('title').text());
   }
 })();
+
 ```
 
 ### 贡献
 
-欢迎对zy-crawler进行贡献！如果你发现了任何问题或者有任何想法或建议，请通过以下方式联系我们：
+欢迎对zy-crawler进行贡献！如果你发现了任何问题或者有任何想法或建议，请通过以下方式联系我：
 
 - 在GitHub上提出问题或请求。
 - 提交一个Pull Request来改进代码。
@@ -94,4 +100,3 @@ zy-crawler是根据MIT许可证开源的。详情请参阅LICENSE文件。
 - Cheerio
 - request-promise
 
-这些项目提供了我们需要的工具和库，使得zy-crawler的开发和维护变得更加容易。

@@ -24,12 +24,12 @@ class Crawler {
         try {
             response = await request(requestOptions);
         } catch (err) {
-            throw new Error(`Failed to fetch page: ${url}. Error: ${err.message}`);
+            throw new Error(`网页获取失败: ${url}. Error: ${err.message}`);
         }
 
         // 解析 HTML
         // 返回解析结果
-        return cheerio.load({url, data: response.body});
+        return {url, data: cheerio.load(response.body)};
     }
 
     // 爬取多个网页
@@ -40,10 +40,10 @@ class Crawler {
                 const result = await this.fetch(url);
                 results.push(result);
             } catch (err) {
-                console.error(err.message);
+                throw new Error(`网页获取失败: ${url}. Error: ${err.message}`);
             }
         }
-        return {urls, data: results};
+        return {url: urls, data: results};
     }
 }
 
